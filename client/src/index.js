@@ -4,6 +4,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-// renders the app before anything else
+// renders the app before anything else and gets sent to html
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();

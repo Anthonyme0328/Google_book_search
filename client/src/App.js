@@ -6,12 +6,13 @@ import Saved from "./pages/Saved";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
+// use router to navagate page and load proper page details
 function App() {
   return (
     // router is returned
     <Router>
       <div>
-      {/* imports the nav bar and the switch route */}
+      {/* imports the nav bar and the switch routes */}
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
