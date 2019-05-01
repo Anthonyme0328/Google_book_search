@@ -1,3 +1,4 @@
+// imports react and the style page
 import React from "react";
 import "./style.css";
 

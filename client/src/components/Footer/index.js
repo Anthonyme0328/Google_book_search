@@ -1,7 +1,9 @@
 import React from "react";
 
+// creates the footer
 function Footer() {
   return (
+    // footer is set to the right and has a github logo
     <footer>
       <hr />
       <p className="pull-right">
@@ -11,4 +13,5 @@ function Footer() {
   );
 }
 
+// exports the footer to be reused
 export default Footer;

@@ -8,12 +8,14 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 
+// inherits eveything from component
 class Home extends Component {
   state = {
     books: [],
     q: "",
     message: "Search For A Book To Begin!"
   };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -22,6 +24,7 @@ class Home extends Component {
     });
   };
 
+  // gets the books from the api while setting the state
   getBooks = () => {
     API.getBooks(this.state.q)
       .then(res =>
@@ -29,6 +32,7 @@ class Home extends Component {
           books: res.data
         })
       )
+      // returns no new books if search has no results
       .catch(() =>
         this.setState({
           books: [],
@@ -37,14 +41,16 @@ class Home extends Component {
       );
   };
 
+  // handles the submission of the search 
   handleFormSubmit = event => {
     event.preventDefault();
     this.getBooks();
   };
 
+  // sets the state when saving a book
   handleBookSave = id => {
     const book = this.state.books.find(book => book.id === id);
-
+// the info that is saved
     API.saveBook({
       googleId: book.id,
       title: book.volumeInfo.title,
@@ -58,18 +64,25 @@ class Home extends Component {
 
   render() {
     return (
+      // creates a container
       <Container>
+        {/* creates a row */}
         <Row>
+          {/* creates a column */}
           <Col size="md-12">
             <Jumbotron>
+              {/* creates jumbotron with all of the txt in white below */}
               <h1 className="text-center">
                 <strong>(React) Google Books Search</strong>
               </h1>
               <h2 className="text-center">Search for and Save Books of Interest.</h2>
             </Jumbotron>
           </Col>
+          {/* creates cols */}
           <Col size="md-12">
+          {/* creates a card for book search */}
             <Card title="Book Search" icon="far fa-book">
+            {/* creates an input form for the search */}
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
@@ -79,7 +92,9 @@ class Home extends Component {
           </Col>
         </Row>
         <Row>
+          {/* creates cols  */}
           <Col size="md-12">
+          {/* creates a results card for each result */}
             <Card title="Results">
               {this.state.books.length ? (
                 <List>
@@ -115,4 +130,5 @@ class Home extends Component {
   }
 }
 
+// exports home page for use elsewhere
 export default Home;
